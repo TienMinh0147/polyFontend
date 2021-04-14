@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body ng-app="myApp" ng-controller="myCtrl">
+      <div class="container">
+          <div class="row" style="margin-top: 20px;">
+              <div class="col-sm-8 offset-sm-2">
+                  <div class="card">
+                      <div class="card-header">
+                          TINH THUONG TET NGUYEN DAN
+                      </div>
+                      <div class="card-body">
+                          <form name ="frmBonus" >
+                              <div class="form-group">
+                                  <label for="">Ho va ten</label>
+                                  <input  class="form-control" ng-model="name" required type="text" minlength="10" name="txtFullname">
+                                  <label ng-show="frmBonus.txtFullname.$invalid" class="alert alert-danger">Ban chua nhap ho va ten</label>
+                              </div>
+                              <div class="form-group">
+                                <label for="">Luong</label>
+                                <input  class="form-control" ng-model="salary" required min="200000" type="number" name="txtSalary">
+                                <label ng-show="frmBonus.txtSalary.$invalid" class="alert alert-danger">luong phai luong hon 2000000</label>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="">Gioi tinh</label> </br>
+                                <div class="form-check form-check-inline">
+                                    <input ng-model="gender" value="Nam" class="form-check-input" type="radio" name="gender" >
+                                    <label class="form-check-label" for="gender">Nam</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input ng-model="gender" value="Nu" class="form-check-input" type="radio" name="gender"  >
+                                    <label class="form-check-label" for="gender">Nu</label>
+                                  </div>
+                                  <div class="form-group">
+                                      <label for="">Do tuoi</label>
+                                      <select ng-model="age" class="form-control" ng-options="x.age for x in list_age" name="" id="">
+                                          
+                                      </select>
+                                  </div>
+                            </div>
+                            
+                          </form>
+                      </div>
+                      <div class="card-footer">
+                          TIEN THUONG {{getBouns()}}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <script>
+          var app = angular.module("myApp",[]);
+          app.controller("myCtrl", function($scope){
+              $scope.list_age =[
+                  {
+                      age: "Duoi 25",
+                      rate: 0.07
+                  },
+                  {
+                      age: "Tu 25 => 40",
+                      rate: 0.87
+                  },
+                  {
+                      age: "Duoi 25",
+                      rate: 0.17
+                  },
+              ];
+              $scope.salary =0;
+              $scope.gender = "Nam";
+              $scope.age = $scope.list_age[1];
+              $scope.getBouns = function(){
+                  var bonus = $scope.age.rate* $scope.salary;
+                  if($scope.gender=="Nu"){
+                      bonus+= 200000;
+                  }
+                  return bonus;
+              }
+          })
+      </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

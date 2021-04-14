@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+    <title>Document</title>
+</head>
+<body ng-app="myApp" ng-controller="eventCtrl">
+    <h1>Count: {{count}}</h1>
+    <h1 ng-mousemove="clickcount()">Re chuot vao day</h1>
+    <button type="submit" ng-click="clickcount()">click</button>
+    <script>
+        var app = angular.module("myApp", []);
+        app.controller("eventCtrl", function($scope){
+            $scope.count = 0;
+            $scope.clickcount = function(){
+                $scope.count++;
+            }
+        });
+    </script>
+</body>
+</html>
